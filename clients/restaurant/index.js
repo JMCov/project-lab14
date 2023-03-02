@@ -1,17 +1,14 @@
 'use strict';
 
-const { thanksDriver } = require('./handler');
+const thanksNotes = require('./handler');
 const { io } = require('socket.io-client');
 
-const socket = io.connect('http://localhost:3003/caps');
+const socket = io.connect('http://localhost:3003/foodChain');
 
-socket.emit('get-all', {queueId: 'Backasswards meat'});
+socket.emit('get-all', { queueId: 'BackASSwards meat' });
 
 socket.on('delivered', (payload) => {
-  thanksDriver(payload);
+  thanksNotes(payload);
   socket.emit('received', payload);
 });
 
-// setInterval(() => {
-//   newOrder(socket);
-// }, 5000);

@@ -13,14 +13,13 @@ const newOrder = (socket, payload = null) => {
       foodOrder: chance.animal(),
     };
   }
-  console.log(`FARM-VENDOR: thanks for picking up ${payload.animalName} the ${payload.foodOrder}.`);
+  console.log(`FARM: thanks for picking up ${payload.animalName} the ${payload.foodOrder}.`);
   socket.emit('join', payload.store);
   socket.emit('pickup', payload);
 
 };
 
 const thanksDriver = (payload) => {
-  // console.log(`FARM-VENDOR: Thank you for picking up the ${payload.animalName}`);
   process.exit();
 };
 

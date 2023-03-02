@@ -4,13 +4,13 @@ require('dotenv').config();
 const { Server } = require('socket.io');
 const PORT = process.env.PORT || 3003;
 const server = new Server();
-const caps = server.of('/caps');
+const foodChain = server.of('/foodChain');
 const Queue = require('./lib/queue');
 const eventQueue = new Queue();
 
 
-caps.on('connection', (socket) => {
-  console.log('Connected to caps with socket.id = ', socket.id);
+foodChain.on('connection', (socket) => {
+  console.log('Connected to foodChain with socket.id = ', socket.id);
 
   socket.onAny((event, payload) => {
     const time = new Date().toISOString();
@@ -33,11 +33,11 @@ caps.on('connection', (socket) => {
     // console.log('Event Queue--------->', eventQueue);
     currentQueue.store(payload.orderID, payload);
     // console.log('Current Queue ---------->', currentQueue);
-    caps.emit('pickup', payload);
+    foodChain.emit('pickup', payload);
   });
 
   socket.on('in-transit', (payload) => {
-    caps.emit('in-transit', payload);
+    foodChain.emit('in-transit', payload);
   });
 
   socket.on('delivered', (payload) => {
@@ -47,7 +47,7 @@ caps.on('connection', (socket) => {
       currentQueue = eventQueue.read(queueKey);
     }
     currentQueue.store(payload.orderID, payload);
-    caps.emit('delivered', payload);
+    foodChain.emit('delivered', payload);
   });
 
 
@@ -61,7 +61,7 @@ caps.on('connection', (socket) => {
 
     let message = currentQueue.remove(payload.orderID);
 
-    caps.emit('received', message);
+    foodChain.emit('received', message);
   });
 
   socket.on('get-all', (payload) => {
