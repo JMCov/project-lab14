@@ -6,7 +6,8 @@
 
 ### Problem Domain
 
-Driver and Vendor Sockets and Messaging Queues
+Created a Farm -> Butcher -> Restaurant process.
+
 
 #### `.env` requirements (where applicable)
 
