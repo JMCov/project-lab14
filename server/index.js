@@ -25,14 +25,14 @@ caps.on('connection', (socket) => {
 
 
   socket.on('pickup', (payload) => {
-    let currentQueue = eventQueue.read('driver');
+    let currentQueue = eventQueue.read('butcher');
     if (!currentQueue) {
-      let queueKey = eventQueue.store('driver', new Queue());
+      let queueKey = eventQueue.store('butcher', new Queue());
       currentQueue = eventQueue.read(queueKey);
     }
-    console.log('Event Queue--------->', eventQueue)
+    // console.log('Event Queue--------->', eventQueue);
     currentQueue.store(payload.orderID, payload);
-    console.log('Current Queue ---------->', currentQueue);
+    // console.log('Current Queue ---------->', currentQueue);
     caps.emit('pickup', payload);
   });
 

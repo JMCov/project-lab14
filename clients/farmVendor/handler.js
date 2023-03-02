@@ -6,22 +6,22 @@ var chance = new Chance();
 const newOrder = (socket, payload = null) => {
   if (!payload) {
     payload = {
-      store: '1-800-flowers',
+      store: 'Old McDonald Ranch',
       orderID: chance.guid(),
       customer: chance.name(),
-      address: chance.address(),
+      animalName: chance.first(),
+      foodOrder: chance.animal(),
     };
   }
-  console.log('VENDOR: order ready for pickup');
+  console.log(`FARM-VENDOR: thanks for picking up ${payload.animalName} the ${payload.foodOrder}.`);
   socket.emit('join', payload.store);
   socket.emit('pickup', payload);
 
 };
 
 const thanksDriver = (payload) => {
-
-  console.log(`VENDOR: Thank you for delivering ${payload.orderID}`);
-
+  // console.log(`FARM-VENDOR: Thank you for picking up the ${payload.animalName}`);
+  process.exit();
 };
 
 module.exports = { thanksDriver, newOrder };

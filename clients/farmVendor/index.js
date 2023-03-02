@@ -5,7 +5,7 @@ const { io } = require('socket.io-client');
 
 const socket = io.connect('http://localhost:3003/caps');
 
-socket.emit('get-all', {queueId: '1-800-flowers'});
+socket.emit('get-all', {queueId: 'Old McDonald Ranch'});
 
 socket.on('delivered', (payload) => {
   thanksDriver(payload);
