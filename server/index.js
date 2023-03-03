@@ -30,9 +30,9 @@ foodChain.on('connection', (socket) => {
       let queueKey = eventQueue.store('butcher', new Queue());
       currentQueue = eventQueue.read(queueKey);
     }
-    // console.log('Event Queue--------->', eventQueue);
+    console.log('Event Queue--------->', eventQueue);
     currentQueue.store(payload.orderID, payload);
-    // console.log('Current Queue ---------->', currentQueue);
+    console.log('Current Queue ---------->', currentQueue);
     foodChain.emit('pickup', payload);
   });
 
@@ -46,7 +46,9 @@ foodChain.on('connection', (socket) => {
       let queueKey = eventQueue.store(payload.store, new Queue());
       currentQueue = eventQueue.read(queueKey);
     }
+    console.log('payload ---------->', eventQueue);
     currentQueue.store(payload.orderID, payload);
+    console.log('payload ----------> ---------->', currentQueue);
     foodChain.emit('delivered', payload);
   });
 
@@ -61,7 +63,7 @@ foodChain.on('connection', (socket) => {
 
     let message = currentQueue.remove(payload.orderID);
 
-    foodChain.emit('received', message);
+    // foodChain.emit('received', message);
   });
 
   socket.on('get-all', (payload) => {

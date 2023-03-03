@@ -8,7 +8,7 @@ const socket = io.connect('http://localhost:3003/foodChain');
 socket.emit('get-all', {queueId: 'Old McDonald Ranch'});
 
 socket.on('delivered', (payload) => {
-  // thanksDriver(payload);
+  thanksDriver(payload);
   socket.emit('received', payload);
 });
 
