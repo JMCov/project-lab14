@@ -1,13 +1,12 @@
-# project lab 14
+# Project Lab 14
 
-## Project: Restaurant
+## Project: BackASSwards Meat Resturant
 
 ### Author: Brenda Jow, Marco Villafana, Jordan Covington
 
 ### Problem Domain
 
-Created a Farm -> Butcher -> Restaurant process.
-
+Created a Farm -> Butcher -> Restaurant process. With Web Sockets to simulate client/server communication
 
 #### `.env` requirements (where applicable)
 
@@ -21,7 +20,7 @@ PORT
 
 fill this in as you see fit
 - How do you run tests?
-nodemon
+nodemon and run the index files to see if queues are being updated appropriately.
 - Any tests of note?
 No
 - Describe any tests that you did not complete, skipped, etc
