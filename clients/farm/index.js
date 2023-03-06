@@ -1,6 +1,6 @@
 'use strict';
 
-const { newOrder, thanksDriver } = require('./handler');
+const { newOrder } = require('./handler');
 const { io } = require('socket.io-client');
 
 const socket = io.connect('http://localhost:3003/foodChain');
